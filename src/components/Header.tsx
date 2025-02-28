@@ -8,11 +8,11 @@ function Navigation() {
   const pathname = usePathname()
 
   const isActive = (path: string) => {
-    return pathname === path ? "font-bold text-white uppercase relative after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:top-8 after:w-[15px] after:h-[22px] after:bg-[url('/select_header.svg')] after:bg-no-repeat after:bg-contain" : "font-medium hover:text-amber-300 transition-colors"
+    return pathname === path ? "font-bold text-white uppercase relative after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:top-8 after:w-[15px] after:h-[22px] after:bg-[url('/select_header.svg')] after:bg-no-repeat after:bg-contain text-[12px] xs:text-sm sm:text-base" : "font-medium hover:text-amber-300 transition-colors text-[12px] xs:text-sm sm:text-base"
   }
 
   return (
-    <nav className="hidden md:flex space-x-8">
+    <nav className="hidden md:flex space-x-4 xs:space-x-6 sm:space-x-8">
       <Link href="/" className={isActive('/')}>
         Inicio
       </Link>
@@ -31,10 +31,10 @@ function Navigation() {
 
 export default function Header() {
   return (
-    <header className="bg-[#99582A] text-white py-4 sticky top-0 z-50">
-      <div className="container mx-auto px-4 flex justify-between items-center">
+    <header className="bg-[#99582A] text-white py-2 xs:py-3 sm:py-4 sticky top-0 z-50">
+      <div className="container mx-auto px-2 xs:px-3 sm:px-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-serif">
-          Peletería Central
+          <span className="text-lg xs:text-xl sm:text-2xl">Peletería Central</span>
         </Link>
         
         <Navigation />

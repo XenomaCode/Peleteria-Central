@@ -9,8 +9,14 @@ export default function HeroSection() {
           src="/landing-images/background_cover.png" 
           alt="Materiales de calzado" 
           fill 
-          className="object-cover object-center"
-          sizes="100vw"
+          className="object-cover object-center sm:object-center md:object-right-top"
+          sizes="(max-width: 768px) 100vw, 
+                 (max-width: 1200px) 80vw,
+                 (max-width: 400px) 60vw,
+                 100vw"
+          style={{
+            objectPosition: 'center 20%'
+          }}
           priority
         />
       </div>
@@ -29,11 +35,11 @@ export default function HeroSection() {
       <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32 min-h-screen flex flex-col justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 items-center">
           <div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-3 sm:mb-4 md:mb-6 leading-tight lg:leading-normal" style={{ fontSize: '5rem' }}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-3 sm:mb-4 md:mb-6 leading-tight lg:leading-normal" style={{ fontSize: 'clamp(4rem, 5vw, 5rem)' }}>
               Adquiere los mejores materiales para <span className="text-amber-300 font-bold">calzado</span>
             </h1>
             
-            <p className="text-white text-sm sm:text-base md:text-lg mb-4 sm:mb-6 md:mb-8 leading-relaxed max-w-prose">
+            <p className="text-white text-sm sm:text-base md:text-lg mb-4 sm:mb-6 md:mb-8 leading-relaxed max-w-prose" style={{ fontSize: 'clamp(0.3rem, 5vw, 1rem)' }}>
               Descubre nuestra selección de insumos de alta calidad para la industria 
               del calzado y marroquinería. Ofrecemos una amplia gama de materiales, 
               desde sintéticos textil, hasta materiales esenciales, diseñados para 
@@ -49,7 +55,7 @@ export default function HeroSection() {
           
           <div className="flex justify-center md:justify-center items-center mt-4 sm:mt-6 md:mt-0">
             <Link href="/contacto">
-              <button className="bg-amber-300 text-amber-900 font-bold py-3 sm:py-4 px-8 sm:px-12 rounded-xl sm:rounded-2xl hover:bg-amber-400 transition-colors text-base sm:text-lg uppercase w-full sm:w-auto">
+              <button className="bg-amber-300 text-amber-900 font-bold py-3 sm:py-4 px-8 sm:px-12 rounded-xl sm:rounded-2xl hover:bg-amber-400 transition-colors text-base sm:text-lg uppercase w-70 sm:w-70">
                 CONTACTO
               </button>
             </Link>
@@ -61,8 +67,8 @@ export default function HeroSection() {
         <div className="relative">
           
           <div className="absolute left-1/2 bottom-4 sm:bottom-8 transform -translate-x-1/2">
-            <div className="bg-[#6F1D1B] rounded-full p-2 sm:p-3 animate-bounce shadow-lg h-16 sm:h-20">
-              <svg className="w-4 h-4 sm:w-6 sm:h-6 text-white translate-y-3 sm:translate-y-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <div className="bg-[#6F1D1B] rounded-full p-1.5 xs:p-2 sm:p-3 animate-bounce shadow-lg h-12 xs:h-16 sm:h-20">
+              <svg className="w-3 h-3 xs:w-4 sm:w-6 xs:h-4 sm:h-6 text-white translate-y-2 xs:translate-y-3 sm:translate-y-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </div>
