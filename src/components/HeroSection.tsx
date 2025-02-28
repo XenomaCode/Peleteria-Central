@@ -46,7 +46,7 @@ export default function HeroSection() {
               satisfacer las necesidades más exigentes.
             </p>
             
-            <p className="text-white text-sm sm:text-base md:text-lg mb-4 sm:mb-6 md:mb-8 leading-relaxed hidden md:block">
+            <p className="text-white text-sm sm:text-base md:text-lg mb-4 sm:mb-6 md:mb-8 leading-relaxed max-w-prose" style={{ fontSize: 'clamp(0.3rem, 5vw, 1rem)' }}>
               Con años de experiencia en el sector, nos enorgullecemos de ser el socio 
               confiable para tu negocio, brindando productos que combinan durabilidad, 
               estilo y funcionalidad.
