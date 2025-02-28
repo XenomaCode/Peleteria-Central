@@ -15,7 +15,16 @@ export default function HeroSection() {
         />
       </div>
       
-      <div className="absolute inset-0 bg-amber-900/70 z-10"></div>
+      <div className="absolute inset-0 z-10">
+        <Image 
+          src="/background_degrad.svg"
+          alt="Overlay gradient"
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority
+        />
+      </div>
       
       <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32 min-h-screen flex flex-col justify-center">
         <div className="max-w-xl md:max-w-2xl lg:max-w-3xl">
