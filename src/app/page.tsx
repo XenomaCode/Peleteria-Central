@@ -1,6 +1,8 @@
 import HeroSection from "@/components/HeroSection";
 import EspecializacionSection from "@/components/EspecializacionSection";
 import ProductosRecognized from "@/components/ProductosRecognized";
+import CategoriesSection from "@/components/CategoriesSection";
+import BestSellingProducts from "@/components/BestSellingProducts";
 
 export default function Home() {
   return (
@@ -8,6 +10,8 @@ export default function Home() {
       <HeroSection />
       <EspecializacionSection />
       <ProductosRecognized />
+      <CategoriesSection />
+      <BestSellingProducts />
     </main>
   );
 }
