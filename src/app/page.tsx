@@ -5,6 +5,7 @@ import CategoriesSection from "@/components/CategoriesSection";
 import BestSellingProducts from "@/components/BestSellingProducts";
 import VideoARSection from "@/components/VideoARSection";
 import BrandsSection from "@/components/BrandsSection";
+import AboutUsSection from "@/components/AboutUsSection";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <BestSellingProducts />
       <VideoARSection />
       <BrandsSection />
+      <AboutUsSection />
     </main>
   );
 }
