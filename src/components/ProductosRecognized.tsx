@@ -75,6 +75,9 @@ export default function ProductosRecognized() {
           </div>
         </div>
       </div>
+      <section className="text-white relative overflow-hidden bg-[#FFFBF0]">
+        <br />
+        </section>
     </section>
   );
 }
