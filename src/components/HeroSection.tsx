@@ -35,18 +35,15 @@ export default function HeroSection() {
       <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32 min-h-screen flex flex-col justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 items-center">
           <div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-3 sm:mb-4 md:mb-6 leading-tight lg:leading-normal" style={{ fontSize: 'clamp(4rem, 5vw, 5rem)' }}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-3 sm:mb-4 md:mb-6 leading-tight lg:leading-normal text-center sm:text-left" style={{ fontSize: 'clamp(3rem, 5vw, 5rem)' }}>
               Adquiere los mejores materiales para <span className="text-amber-300 font-bold">calzado</span>
             </h1>
             
-            <p className="text-white text-sm sm:text-base md:text-lg mb-4 sm:mb-6 md:mb-8 leading-relaxed max-w-prose" style={{ fontSize: 'clamp(0.3rem, 5vw, 1rem)' }}>
+            <p className="hidden sm:block text-white text-sm sm:text-base md:text-lg mb-4 sm:mb-6 md:mb-8 leading-relaxed max-w-prose" style={{ fontSize: 'clamp(0.1rem, 5vw, 1.2rem)' }}>
               Descubre nuestra selección de insumos de alta calidad para la industria 
               del calzado y marroquinería. Ofrecemos una amplia gama de materiales, 
               desde sintéticos textil, hasta materiales esenciales, diseñados para 
               satisfacer las necesidades más exigentes.
-            </p>
-            
-            <p className="text-white text-sm sm:text-base md:text-lg mb-4 sm:mb-6 md:mb-8 leading-relaxed max-w-prose" style={{ fontSize: 'clamp(0.3rem, 5vw, 1rem)' }}>
               Con años de experiencia en el sector, nos enorgullecemos de ser el socio 
               confiable para tu negocio, brindando productos que combinan durabilidad, 
               estilo y funcionalidad.
@@ -82,7 +79,7 @@ export default function HeroSection() {
             alt="Decorative wave"
             width={1362}
             height={80}
-            className="w-full translate-y-13 hidden sm:block"
+            className="w-full translate-y-4 sm:translate-y-16 md:translate-y-20 lg:translate-y-13"
             priority
           />
         </div>
