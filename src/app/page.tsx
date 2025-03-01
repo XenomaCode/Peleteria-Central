@@ -6,6 +6,7 @@ import BestSellingProducts from "@/components/BestSellingProducts";
 import VideoARSection from "@/components/VideoARSection";
 import BrandsSection from "@/components/BrandsSection";
 import AboutUsSection from "@/components/AboutUsSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <VideoARSection />
       <BrandsSection />
       <AboutUsSection />
+      <Footer />
     </main>
   );
 }
