@@ -3,6 +3,7 @@ import EspecializacionSection from "@/components/EspecializacionSection";
 import ProductosRecognized from "@/components/ProductosRecognized";
 import CategoriesSection from "@/components/CategoriesSection";
 import BestSellingProducts from "@/components/BestSellingProducts";
+import VideoARSection from "@/components/VideoARSection";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <ProductosRecognized />
       <CategoriesSection />
       <BestSellingProducts />
+      <VideoARSection />
     </main>
   );
 }
