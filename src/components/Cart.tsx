@@ -120,7 +120,16 @@ export default function Cart() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
                               </svg>
                             </button>
-                            <span className="w-8 text-center font-medium">{item.quantity}</span>
+                            <input
+                              type="number"
+                              min="0"
+                              value={item.quantity}
+                              onChange={(e) => {
+                                const value = parseInt(e.target.value) || 0
+                                updateQuantity(item.id, Math.max(0, value))
+                              }}
+                              className="w-12 text-center font-medium border-0 focus:ring-0 p-0"
+                            />
                             <button
                               onClick={() => updateQuantity(item.id, item.quantity + 1)}
                               className="p-1 text-gray-600 hover:text-[#99582A] transition-colors"

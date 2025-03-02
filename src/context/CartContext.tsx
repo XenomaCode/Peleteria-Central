@@ -106,13 +106,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const hasItemsWithoutPrice = items.some(item => !item.price)
 
   const generateWhatsAppMessage = () => {
-    const message = ["*NUEVO PEDIDO*\n\n"]
+    let message = "*NUEVO PEDIDO*\n\n"
     
     items.forEach(item => {
-      message.push(`• ${item.quantity} ${item.name}\n`)
+      message += `• ${item.quantity} ${item.name}\n`
     })
 
-    return encodeURIComponent(message.join(''))
+    
+
+    return message
   }
 
   const savePurchaseToDatabase = async () => {
@@ -131,10 +133,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }
 
   const finalizePurchase = async () => {
-    // TODO: Cambiar por el número de WhatsApp de la empresa
-    const phoneNumber = '+524772275165'
+    const phoneNumber = '524772275165'
     const message = generateWhatsAppMessage()
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     
     // Guardar en la base de datos
     await savePurchaseToDatabase()
