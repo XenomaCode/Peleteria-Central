@@ -15,16 +15,7 @@ export default function ProductosRecognized() {
       </div>
       <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
         <div className="flex flex-col md:grid md:grid-cols-2 gap-8 items-center">
-          {/* Imagen Hilo (arriba en móvil) */}
-          <div className="block md:hidden w-full max-w-[300px] mx-auto mb-8">
-            <Image
-              src="/landing-images/hilo_jareta.png"
-              alt="Hilos de alta calidad"
-              width={600}
-              height={400}
-              className="rounded-lg w-full h-auto"
-            />
-          </div>
+          
 
           {/* Contenedor de imágenes para tablet/desktop */}
           <div className="relative hidden md:block">
@@ -33,14 +24,14 @@ export default function ProductosRecognized() {
               alt="Hilos de alta calidad"
               width={600}
               height={400}
-              className="rounded-lg -translate-x-0 md:-translate-x-16 lg:-translate-x-20 -translate-y-10 md:-translate-y-20 lg:translate-y-29"
+              className="rounded-lg -translate-x-0 md:-translate-x-16 lg:-translate-x-20 -translate-y-10 md:-translate-y-20 lg:translate-y-29 drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)] hover:drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)] hover:brightness-105 transition-all duration-300"
             />
             <Image
               src="/landing-images/lider_pvc.png"
               alt="Pegamento Liderz"
               width={400}
               height={500}
-              className="absolute -bottom-10 right-0 rounded-lg object-contain transform translate-x-20 md:translate-x-32 lg:translate-x-210 -translate-y-10 md:-translate-y-20 lg:translate-y-38"
+              className="absolute -bottom-10 right-0 rounded-lg object-contain transform translate-x-20 md:translate-x-32 lg:translate-x-210 -translate-y-10 md:-translate-y-20 lg:translate-y-38 drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)] hover:drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)] hover:brightness-105 transition-all duration-300"
             />
           </div>
 
@@ -63,15 +54,28 @@ export default function ProductosRecognized() {
             </Link>
           </div>
 
-          {/* Imagen Pegamento (abajo en móvil) */}
-          <div className="block md:hidden w-full max-w-[200px] mx-auto mt-8">
-            <Image
-              src="/landing-images/lider_pvc.png"
-              alt="Pegamento Liderz"
-              width={400}
-              height={500}
-              className="rounded-lg w-full h-auto -translate-x-8"
-            />
+          {/* Contenedor de imágenes para móvil */}
+          <div className="block md:hidden w-full">
+            <div className="flex justify-center items-center gap-4">
+              <div className="w-1/2 max-w-[200px]">
+                <Image
+                  src="/landing-images/hilo_jareta.png"
+                  alt="Hilos de alta calidad"
+                  width={600}
+                  height={400}
+                  className="rounded-lg w-full h-auto drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)] hover:drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)] hover:brightness-105 transition-all duration-300"
+                />
+              </div>
+              <div className="w-1/2 max-w-[150px]">
+                <Image
+                  src="/landing-images/lider_pvc.png"
+                  alt="Pegamento Liderz"
+                  width={400}
+                  height={500}
+                  className="rounded-lg w-full h-auto drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)] hover:drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)] hover:brightness-105 transition-all duration-300"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

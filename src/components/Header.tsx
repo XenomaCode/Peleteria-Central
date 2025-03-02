@@ -46,31 +46,43 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
       <div className={`md:hidden fixed top-0 left-0 h-screen w-64 bg-[#99582A] z-50 transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} shadow-xl`}>
         <div className="p-6">
           <div className="text-2xl font-serif text-amber-300 mb-8 text-center border-b border-amber-400 pb-4">
-            PELETERÍA CENTRAL
+            <Image src="/peleteria_logo_con_color.svg" alt="Peletería Central" width={200} height={200} />
           </div>
           <div className="flex flex-col space-y-6">
             <Link href="/" 
-              className={`${pathname === '/' ? 'text-amber-300' : 'text-white'} hover:text-amber-300 transition-colors text-lg`}
+              className={`${pathname === '/' ? 'text-amber-300' : 'text-white'} hover:text-amber-300 transition-colors text-lg flex items-center gap-3`}
               onClick={onClose}
             >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
               Inicio
             </Link>
             <Link href="/nosotros" 
-              className={`${pathname === '/nosotros' ? 'text-amber-300' : 'text-white'} hover:text-amber-300 transition-colors text-lg`}
+              className={`${pathname === '/nosotros' ? 'text-amber-300' : 'text-white'} hover:text-amber-300 transition-colors text-lg flex items-center gap-3`}
               onClick={onClose}
             >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
               Nosotros
             </Link>
             <Link href="/productos" 
-              className={`${pathname === '/productos' ? 'text-amber-300' : 'text-white'} hover:text-amber-300 transition-colors text-lg`}
+              className={`${pathname === '/productos' ? 'text-amber-300' : 'text-white'} hover:text-amber-300 transition-colors text-lg flex items-center gap-3`}
               onClick={onClose}
             >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+              </svg>
               Productos
             </Link>
             <Link href="/contacto" 
-              className={`${pathname === '/contacto' ? 'text-amber-300' : 'text-white'} hover:text-amber-300 transition-colors text-lg`}
+              className={`${pathname === '/contacto' ? 'text-amber-300' : 'text-white'} hover:text-amber-300 transition-colors text-lg flex items-center gap-3`}
               onClick={onClose}
             >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
               Contacto
             </Link>
           </div>
@@ -150,13 +162,20 @@ export default function Header() {
             </svg>
           </button>
           <Link href="/" className="text-2xl font-serif">
-            <span className="text-lg xs:text-xl sm:text-2xl">Peletería Central</span>
+            <Image 
+              src="/peleteria_logo_con_color.svg" 
+              alt="Peletería Central" 
+              width={200} 
+              height={60} 
+              className="w-[120px] md:w-[160px] lg:w-[200px] h-auto"
+              priority
+            />
           </Link>
         </div>
 
         <Navigation />
         
-        <div className={`flex items-center space-x-2 sm:space-x-4 ${isSearchOpen ? 'md:flex hidden' : 'flex'}`}>
+        <div className={`flex items-center -translate-x-5 space-x-5 sm:space-x-4 ${isSearchOpen ? 'md:flex hidden' : 'flex'}`}>
           <div className="relative">
             <input 
               type="text" 
