@@ -1,6 +1,8 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
+import { database } from '@/firebase/config'
+import { ref, push, serverTimestamp } from 'firebase/database'
 
 interface Product {
   id: string
@@ -14,107 +16,152 @@ interface Product {
 }
 
 interface CartItem {
-  product: Product
+  id: string
+  name: string
+  price?: number
   quantity: number
+  category: string
+  images: string[]
 }
 
 interface CartContextType {
   items: CartItem[]
-  isOpen: boolean
-  openCart: () => void
-  closeCart: () => void
-  addItem: (product: Product, quantity: number) => void
-  updateQuantity: (productId: string, quantity: number) => void
+  addItem: (product: any, quantity: number) => void
   removeItem: (productId: string) => void
+  updateQuantity: (productId: string, quantity: number) => void
+  clearCart: () => void
   itemsCount: number
   total: number
   hasItemsWithoutPrice: boolean
+  finalizePurchase: () => void
+  isCartOpen: boolean
+  openCart: () => void
+  closeCart: () => void
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
-export function CartProvider({ children }: { children: ReactNode }) {
+export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
-  const [isOpen, setIsOpen] = useState(false)
+  const [isCartOpen, setIsCartOpen] = useState(false)
 
-  const openCart = () => setIsOpen(true)
-  const closeCart = () => setIsOpen(false)
+  // Cargar items del localStorage al iniciar
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cart')
+    if (savedCart) {
+      setItems(JSON.parse(savedCart))
+    }
+  }, [])
 
-  const addItem = (product: Product, quantity: number) => {
-    setItems(prevItems => {
-      const existingItem = prevItems.find(item => item.product.id === product.id)
+  // Guardar items en localStorage cuando cambien
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(items))
+  }, [items])
+
+  const openCart = () => setIsCartOpen(true)
+  const closeCart = () => setIsCartOpen(false)
+
+  const addItem = (product: any, quantity: number) => {
+    setItems(currentItems => {
+      const existingItem = currentItems.find(item => item.id === product.id)
       if (existingItem) {
-        return prevItems.map(item =>
-          item.product.id === product.id
-            ? { 
-                ...item, 
-                quantity: Math.min(
-                  item.product.stock || 99999, 
-                  item.quantity + quantity
-                ) 
-              }
+        return currentItems.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         )
       }
-      return [...prevItems, { product, quantity }]
+      return [...currentItems, { ...product, quantity }]
     })
-    openCart()
-  }
-
-  const updateQuantity = (productId: string, quantity: number) => {
-    if (quantity === 0) {
-      removeItem(productId)
-    } else {
-      setItems(prevItems =>
-        prevItems.map(item =>
-          item.product.id === productId
-            ? { 
-                ...item, 
-                quantity: Math.min(
-                  item.product.stock || 99999,
-                  quantity
-                ) 
-              }
-            : item
-        )
-      )
-    }
+    openCart() // Abrimos el carrito automáticamente al agregar un item
   }
 
   const removeItem = (productId: string) => {
-    setItems(prevItems => prevItems.filter(item => item.product.id !== productId))
+    setItems(currentItems => currentItems.filter(item => item.id !== productId))
   }
 
-  // Calcular el total solo de los productos que tienen precio
-  const total = items.reduce((sum, item) => {
-    if (typeof item.product.price === 'number') {
-      return sum + (item.product.price * item.quantity)
+  const updateQuantity = (productId: string, quantity: number) => {
+    setItems(currentItems =>
+      currentItems.map(item =>
+        item.id === productId ? { ...item, quantity } : item
+      )
+    )
+  }
+
+  const clearCart = () => {
+    setItems([])
+    localStorage.removeItem('cart')
+    closeCart()
+  }
+
+  const itemsCount = items.reduce((total, item) => total + item.quantity, 0)
+  
+  const total = items.reduce((total, item) => {
+    if (item.price) {
+      return total + item.price * item.quantity
     }
-    return sum
+    return total
   }, 0)
 
-  // Contar todos los items, tengan precio o no
-  const itemsCount = items.reduce((sum, item) => sum + item.quantity, 0)
+  const hasItemsWithoutPrice = items.some(item => !item.price)
 
-  // Verificar si hay productos sin precio
-  const hasItemsWithoutPrice = items.some(item => typeof item.product.price !== 'number')
+  const generateWhatsAppMessage = () => {
+    const message = ["*NUEVO PEDIDO*\n\n"]
+    
+    items.forEach(item => {
+      message.push(`• ${item.quantity} ${item.name}\n`)
+    })
 
-  return (
-    <CartContext.Provider value={{
-      items,
-      isOpen,
-      openCart,
-      closeCart,
-      addItem,
-      updateQuantity,
-      removeItem,
-      itemsCount,
-      total,
-      hasItemsWithoutPrice
-    }}>
-      {children}
-    </CartContext.Provider>
-  )
+    return encodeURIComponent(message.join(''))
+  }
+
+  const savePurchaseToDatabase = async () => {
+    try {
+      const purchaseRef = ref(database, 'purchases')
+      await push(purchaseRef, {
+        items,
+        total,
+        hasItemsWithoutPrice,
+        status: 'pending',
+        createdAt: serverTimestamp(),
+      })
+    } catch (error) {
+      console.error('Error saving purchase:', error)
+    }
+  }
+
+  const finalizePurchase = async () => {
+    // TODO: Cambiar por el número de WhatsApp de la empresa
+    const phoneNumber = '+524772275165'
+    const message = generateWhatsAppMessage()
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
+    
+    // Guardar en la base de datos
+    await savePurchaseToDatabase()
+    
+    // Abrir WhatsApp
+    window.open(whatsappUrl, '_blank')
+    
+    // Limpiar el carrito y cerrarlo
+    clearCart()
+  }
+
+  const value = {
+    items,
+    addItem,
+    removeItem,
+    updateQuantity,
+    clearCart,
+    itemsCount,
+    total,
+    hasItemsWithoutPrice,
+    finalizePurchase,
+    isCartOpen,
+    openCart,
+    closeCart
+  }
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
 
 export function useCart() {
