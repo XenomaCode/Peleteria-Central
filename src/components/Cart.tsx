@@ -17,11 +17,14 @@ interface Product {
 export default function Cart() {
   const { 
     items, 
-    isOpen, 
+    isCartOpen: isOpen, 
     closeCart, 
     updateQuantity, 
     removeItem,
-    total 
+    total,
+    clearCart,
+    hasItemsWithoutPrice,
+    finalizePurchase
   } = useCart()
 
   // Función auxiliar para formatear precios
@@ -85,7 +88,7 @@ export default function Cart() {
                 <div className="flex-1 overflow-y-auto p-6 space-y-6">
                   {items.map((item) => (
                     <motion.div
-                      key={item.product.id}
+                      key={item.id}
                       layout
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -94,23 +97,23 @@ export default function Cart() {
                     >
                       <div className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
                         <Image
-                          src={item.product.images[0]}
-                          alt={item.product.name}
+                          src={item.images[0]}
+                          alt={item.name}
                           fill
                           className="object-cover"
                         />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-lg font-medium text-gray-900 truncate">
-                          {item.product.name}
+                          {item.name}
                         </h3>
                         <p className="text-[#99582A] font-medium">
-                          {item.product.price ? `$${formatPrice(item.product.price)}` : 'Precio a consultar'}
+                          {item.price ? `$${formatPrice(item.price)}` : 'Precio a consultar'}
                         </p>
                         <div className="mt-2 flex items-center gap-4">
-                          <div className="flex items-center border border-gray-200 rounded-lg">
+                          <div className="flex items-center border border-gray-200 rounded-lg text-black">
                             <button
-                              onClick={() => updateQuantity(item.product.id, Math.max(0, item.quantity - 1))}
+                              onClick={() => updateQuantity(item.id, Math.max(0, item.quantity - 1))}
                               className="p-1 text-gray-600 hover:text-[#99582A] transition-colors"
                             >
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,7 +122,7 @@ export default function Cart() {
                             </button>
                             <span className="w-8 text-center font-medium">{item.quantity}</span>
                             <button
-                              onClick={() => updateQuantity(item.product.id, Math.min(item.product.stock || 99999, item.quantity + 1))}
+                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
                               className="p-1 text-gray-600 hover:text-[#99582A] transition-colors"
                             >
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -128,7 +131,7 @@ export default function Cart() {
                             </button>
                           </div>
                           <button
-                            onClick={() => removeItem(item.product.id)}
+                            onClick={() => removeItem(item.id)}
                             className="text-red-500 hover:text-red-600 transition-colors"
                           >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,11 +139,6 @@ export default function Cart() {
                             </svg>
                           </button>
                         </div>
-                        {item.product.stock !== undefined && (
-                          <p className="mt-2 text-sm text-gray-500">
-                            Stock disponible: {item.product.stock} unidades
-                          </p>
-                        )}
                       </div>
                     </motion.div>
                   ))}
@@ -153,17 +151,25 @@ export default function Cart() {
                       <span className="text-[#99582A]">${formatPrice(total)}</span>
                     </div>
                   )}
-                  <button className="w-full bg-[#99582A] text-white px-8 py-3 rounded-xl hover:bg-[#99582A]/90 transition-colors shadow-lg shadow-[#99582A]/30 flex items-center justify-center gap-2">
+                  {hasItemsWithoutPrice && (
+                    <p className="text-amber-600 text-sm">
+                      * Algunos productos requieren consulta de precio
+                    </p>
+                  )}
+                  <button 
+                    onClick={finalizePurchase}
+                    className="w-full bg-[#99582A] text-white px-8 py-3 rounded-xl hover:bg-[#99582A]/90 transition-colors shadow-lg shadow-[#99582A]/30 flex items-center justify-center gap-2"
+                  >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     Finalizar pedido
                   </button>
                   <button
-                    onClick={closeCart}
+                    onClick={clearCart}
                     className="w-full text-gray-500 hover:text-gray-700 transition-colors text-center"
                   >
-                    Seguir comprando
+                    Vaciar carrito
                   </button>
                 </div>
               </>
