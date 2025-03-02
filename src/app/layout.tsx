@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname();
-  const isLoginPage = pathname?.includes('/login');
+  const isAdminOrLogin = pathname?.includes('/admin') || pathname?.includes('/login');
 
   return (
     <html lang="es">
@@ -23,9 +23,9 @@ export default function RootLayout({
         <meta name="description" content="Descubre nuestra selección de insumos de alta calidad para la industria del calzado y marroquinería." />
       </head>
       <body className={inter.className}>
-        {!isLoginPage && <Header />}
+        {!isAdminOrLogin && <Header />}
         {children}
-        {!isLoginPage && <Footer />}
+        {!isAdminOrLogin && <Footer />}
       </body>
     </html>
   )
