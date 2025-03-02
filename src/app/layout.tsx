@@ -1,28 +1,31 @@
+'use client';
+
 import './globals.css'
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Header'
-import Link from 'next/link'
+import Footer from '@/components/Footer'
+import { usePathname } from 'next/navigation'
 
 const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'Peletería Central - Materiales para Calzado y Marroquinería',
-  description: 'Descubre nuestra selección de insumos de alta calidad para la industria del calzado y marroquinería.',
-}
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname();
+  const isLoginPage = pathname?.includes('/login');
+
   return (
     <html lang="es">
+      <head>
+        <title>Peletería Central - Materiales para Calzado y Marroquinería</title>
+        <meta name="description" content="Descubre nuestra selección de insumos de alta calidad para la industria del calzado y marroquinería." />
+      </head>
       <body className={inter.className}>
-        <Header />
+        {!isLoginPage && <Header />}
         {children}
-        
-        
+        {!isLoginPage && <Footer />}
       </body>
     </html>
   )
