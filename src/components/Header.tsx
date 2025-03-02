@@ -6,6 +6,8 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { auth } from '@/firebase/config'
 import ContactModal from './modals/ContactModal'
+import { useCart } from '@/context/CartContext'
+import Cart from './Cart'
 
 function Navigation({ onContactClick }: { onContactClick: () => void }) {
   const pathname = usePathname()
@@ -127,6 +129,7 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const pathname = usePathname()
+  const { itemsCount, openCart } = useCart()
 
   const scrollToAboutUs = () => {
     const aboutUsSection = document.getElementById('about-us-section')
@@ -260,7 +263,10 @@ export default function Header() {
               </button>
             </div>
             
-            <Link href="/carrito" className="relative">
+            <button 
+              onClick={openCart}
+              className="relative hover:text-[#99582A] transition-colors"
+            >
               <svg 
                 className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" 
                 fill="none" 
@@ -269,12 +275,14 @@ export default function Header() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
-              <span 
-                className="absolute -top-1.5 -right-1.5 bg-amber-300 text-amber-900 rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-[10px] sm:text-xs font-bold"
-              >
-                0
-              </span>
-            </Link>
+              {itemsCount > 0 && (
+                <span 
+                  className="absolute -top-1.5 -right-1.5 bg-amber-300 text-amber-900 rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-[10px] sm:text-xs font-bold"
+                >
+                  {itemsCount}
+                </span>
+              )}
+            </button>
           </div>
         </div>
         <MobileMenu 
