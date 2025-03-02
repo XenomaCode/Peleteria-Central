@@ -1,0 +1,59 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes roll {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .rollo { animation: float 3s ease-in-out infinite; }
+    .tela { animation: roll 20s linear infinite; }
+    .patron { opacity: 0.3; }
+  </style>
+
+  <!-- Fondo circular con gradiente -->
+  <defs>
+    <radialGradient id="bg-gradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:#FDE68A;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#FDE68A;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="200" cy="200" r="180" fill="url(#bg-gradient)"/>
+
+  <!-- Grupo principal del rollo -->
+  <g class="rollo">
+    <!-- Base del rollo -->
+    <path d="M160 240 L240 240 Q250 240 250 230 L250 170 Q250 160 240 160 L160 160 Q150 160 150 170 L150 230 Q150 240 160 240Z" fill="#92400E"/>
+    
+    <!-- Rollo de tela -->
+    <g class="tela">
+      <circle cx="200" cy="200" r="50" fill="#FCD34D"/>
+      <!-- Patrón de la tela -->
+      <g class="patron">
+        <path d="M180 160 Q200 180 220 160" stroke="#92400E" stroke-width="2"/>
+        <path d="M170 180 Q200 200 230 180" stroke="#92400E" stroke-width="2"/>
+        <path d="M170 200 Q200 220 230 200" stroke="#92400E" stroke-width="2"/>
+        <path d="M180 220 Q200 240 220 220" stroke="#92400E" stroke-width="2"/>
+      </g>
+    </g>
+
+    <!-- Tela desenrollada -->
+    <path d="M200 150 Q200 140 210 140 L270 140 Q280 140 280 150" stroke="#FCD34D" stroke-width="20" fill="none"/>
+    
+    <!-- Detalles del rollo -->
+    <circle cx="200" cy="200" r="15" fill="#92400E"/>
+    <circle cx="200" cy="200" r="8" fill="#FDE68A"/>
+  </g>
+
+  <!-- Elementos decorativos -->
+  <g class="patron" transform="translate(50, 50)">
+    <path d="M20 20 L40 40" stroke="#92400E" stroke-width="2" opacity="0.2"/>
+    <path d="M60 60 L80 80" stroke="#92400E" stroke-width="2" opacity="0.2"/>
+  </g>
+  <g class="patron" transform="translate(280, 280)">
+    <path d="M20 20 L40 40" stroke="#92400E" stroke-width="2" opacity="0.2"/>
+    <path d="M60 60 L80 80" stroke="#92400E" stroke-width="2" opacity="0.2"/>
+  </g>
+</svg> 

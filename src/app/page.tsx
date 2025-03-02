@@ -19,7 +19,6 @@ export default function Home() {
       <VideoARSection />
       <BrandsSection />
       <AboutUsSection />
-      <Footer />
     </main>
   );
 }
