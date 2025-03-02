@@ -1,7 +1,13 @@
+'use client'
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import ContactModal from "./modals/ContactModal";
 
 export default function HeroSection() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen">
       <div className="absolute inset-0 z-0">
@@ -51,11 +57,12 @@ export default function HeroSection() {
           </div>
           
           <div className="flex justify-center md:justify-center items-center mt-4 sm:mt-6 md:mt-0">
-            <Link href="/contacto">
-              <button className="bg-amber-300 text-amber-900 font-bold py-3 sm:py-4 px-8 sm:px-12 rounded-xl sm:rounded-2xl hover:bg-amber-400 transition-colors text-base sm:text-lg uppercase w-70 sm:w-70">
-                CONTACTO
-              </button>
-            </Link>
+            <button 
+              onClick={() => setIsContactModalOpen(true)}
+              className="bg-amber-300 text-amber-900 font-bold py-3 sm:py-4 px-8 sm:px-12 rounded-xl sm:rounded-2xl hover:bg-amber-400 transition-colors text-base sm:text-lg uppercase w-70 sm:w-70"
+            >
+              CONTACTO
+            </button>
           </div>
         </div>
       </div>
@@ -84,6 +91,11 @@ export default function HeroSection() {
           />
         </div>
       </div>
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </section>
   );
 } 
