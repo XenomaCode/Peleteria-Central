@@ -98,13 +98,13 @@ export default function ProductDetailModal({ product, isOpen, onClose, onAddToCa
                   </p>
                 </div>
 
-                <div className="prose prose-amber">
+                <div className="prose prose-amber text-black">
                   <p>{product.description}</p>
                 </div>
 
                 <div className="pt-6 border-t border-gray-200">
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center border border-gray-200 rounded-xl">
+                    <div className="flex items-center border border-gray-200 rounded-xl text-black">
                       <button
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
                         className="p-3 text-gray-600 hover:text-[#99582A] transition-colors"
