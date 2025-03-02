@@ -65,7 +65,7 @@ export default function HeroSection() {
           
           <div className="absolute left-1/2 bottom-4 sm:bottom-8 transform -translate-x-1/2">
             <div className="bg-[#6F1D1B] rounded-full p-1.5 xs:p-2 sm:p-3 animate-bounce shadow-lg h-12 xs:h-16 sm:h-20">
-              <svg className="w-3 h-3 xs:w-4 sm:w-6 xs:h-4 sm:h-6 text-white translate-y-2 xs:translate-y-3 sm:translate-y-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-6 h-6 xs:w-4 sm:w-6 sm:h-6 text-white translate-y-2 xs:translate-y-3 sm:translate-y-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </div>

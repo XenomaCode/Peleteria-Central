@@ -21,9 +21,9 @@ export default function Footer() {
 
           {/* Ubicación */}
           <div className="p-12 bg-[#1C1917]">
-            <h2 className="text-4xl font-serif mb-8">Ubicación</h2>
+            <h2 className="text-4xl font-serif mb-8 text-center">Ubicación</h2>
             <div className="flex flex-col md:flex-row gap-6">
-              <div className="space-y-2 mb-6 md:mb-0">
+              <div className="space-y-2 mb-6 md:mb-0 text-center">
                 <p className="text-xl">Av. Central 1031,</p>
                 <p className="text-xl">Col. Guadalupe.</p>
                 <p className="text-xl">León, Guanajuato,</p>
@@ -52,15 +52,15 @@ export default function Footer() {
             
             <div>
               <Image
-                src="/landing-images/peleteria_central.png"
+                src="/peleteria_logo_con_color.svg"
                 alt="Peletería Central"
-                width={500}
-                height={80}
-                className="mb-6"
+                width={300}
+                height={300}
+                className="mb-6 mx-auto"
               />
               <br />
               <br />
-              <div className="flex space-x-4">
+              <div className="flex justify-center space-x-4">
                 <Link href="https://facebook.com" target="_blank" className="hover:text-amber-300 transition-colors">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
@@ -97,15 +97,15 @@ export default function Footer() {
 
           {/* Contacto */}
           <div>
-            <h3 className="text-xl font-bold mb-4">CONTACTO</h3>
+            <h3 className="text-xl font-bold mb-4 text-center">CONTACTO</h3>
             <ul className="space-y-2">
-              <li>
+              <li className="text-center">
                 <span className="block">Correo:</span>
                 <a href="mailto:contacto@peleteriacentral.com" className="text-amber-300 hover:text-amber-400 transition-colors">
                   contacto@peleteriacentral.com
                 </a>
               </li>
-              <li>
+              <li className="text-center">
                 <span className="block">Teléfonos:</span>
                 <p>Oficina: 477 761 6263</p>
                 <p>Celular: 477 638 1625</p>
@@ -129,11 +129,11 @@ export default function Footer() {
                 alt="Xenoma Code"
                 width={180}
                 height={60}
-                className="mx-auto transition-all duration-300 group-hover:scale-110 group-hover:brightness-125 group-hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"
+                className="mx-auto transition-all duration-300 group-hover:scale-110 group-hover:brightness-150 group-hover:drop-shadow-[0_0_15px_rgba(139,92,246,0.5)_,_0_0_30px_rgba(99,102,241,0.4)_,_0_0_45px_rgba(67,56,202,0.3)] animate-pulse"
                 loading="lazy"
                 title="Xenoma Code"
               />
-              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-amber-300/0 via-amber-300/30 to-amber-300/0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 animate-pulse"></div>
+              <div className="absolute inset-0 rounded-lg bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-600/20 via-indigo-500/10 to-transparent opacity-0 group-hover:opacity-100 blur-2xl transition-all duration-500 animate-pulse"></div>
             </div>
           </div>
         </div>
