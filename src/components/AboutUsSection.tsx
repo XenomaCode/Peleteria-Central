@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function AboutUsSection() {
   return (
-    <section className="bg-[#FFFBF0] py-16 md:py-24 relative overflow-hidden">
+    <section id="about-us-section" className="bg-[#FFFBF0] py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/background_best_selling_product.svg"
