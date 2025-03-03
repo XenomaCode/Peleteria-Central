@@ -140,8 +140,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     // Guardar en la base de datos
     await savePurchaseToDatabase()
     
-    // Abrir WhatsApp
-    window.open(whatsappUrl, '_blank')
+    // Abrir WhatsApp directamente
+    window.location.href = whatsappUrl
     
     // Limpiar el carrito y cerrarlo
     clearCart()
