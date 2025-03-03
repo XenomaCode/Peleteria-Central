@@ -135,12 +135,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const finalizePurchase = async () => {
     const phoneNumber = '524772275165'
     const message = generateWhatsAppMessage()
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+    
+    // Detectar si es iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+    
+    // Usar formato diferente para iOS
+    const whatsappUrl = isIOS
+      ? `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
+      : `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
     
     // Guardar en la base de datos
     await savePurchaseToDatabase()
     
-    // Abrir WhatsApp directamente
+    // Abrir WhatsApp
     window.location.href = whatsappUrl
     
     // Limpiar el carrito y cerrarlo
